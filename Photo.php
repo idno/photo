@@ -121,19 +121,20 @@ namespace IdnoPlugins\Photo {
             }
 
             $this->title = \Idno\Core\Idno::site()->currentPage()->getInput('title');
-            $this->inreplyto = \Idno\Core\Idno::site()->currentPage()->getInput('inreplyto');
-            /*
-                // TODO fetch syndicated reply targets asynchronously (or maybe on-demand, when syndicating?)
-                if (!empty($inreplyto)) {
-                    if (is_array($inreplyto)) {
-                        foreach ($inreplyto as $inreplytourl) {
-                            $this->syndicatedto = \Idno\Core\Webmention::addSyndicatedReplyTargets($inreplytourl, $this->syndicatedto);
-                        }
-                    } else {
-                        $this->syndicatedto = \Idno\Core\Webmention::addSyndicatedReplyTargets($inreplyto);
+            $inreplyto = \Idno\Core\Idno::site()->currentPage()->getInput('inreplyto');
+            $this->inreplyto = $inreplyto;
+
+            // TODO fetch syndicated reply targets asynchronously (or maybe on-demand, when syndicating?)
+            if (!empty($inreplyto)) {
+                if (is_array($inreplyto)) {
+                    foreach ($inreplyto as $inreplytourl) {
+                        $this->syndicatedto = \Idno\Core\Webmention::addSyndicatedReplyTargets($inreplytourl, $this->syndicatedto);
                     }
+                } else {
+                    $this->syndicatedto = \Idno\Core\Webmention::addSyndicatedReplyTargets($inreplyto);
                 }
-            */
+            }
+
             $this->body  = \Idno\Core\Idno::site()->currentPage()->getInput('body');
             $this->tags  = \Idno\Core\Idno::site()->currentPage()->getInput('tags');
             $access = \Idno\Core\Idno::site()->currentPage()->getInput('access');
