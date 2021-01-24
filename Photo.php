@@ -46,7 +46,6 @@ namespace IdnoPlugins\Photo {
             $meta = array('type' => 'photo');
             if ($this->inreplyto) {
                 $meta['in-reply-to'] = $this->inreplyto;
-            //    $meta['type'] = 'reply';
             }
             return $meta;
         }
