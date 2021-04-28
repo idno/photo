@@ -18,8 +18,8 @@ namespace IdnoPlugins\Photo {
         function registerPages()
         {
             \Idno\Core\Idno::site()->routes()->addRoute('/photo/edit/?', '\IdnoPlugins\Photo\Pages\Edit');
-            \Idno\Core\Idno::site()->routes()->addRoute('/photo/edit/([A-Za-z0-9\-]+)/?', '\IdnoPlugins\Photo\Pages\Edit');
-            \Idno\Core\Idno::site()->routes()->addRoute('/photo/delete/([A-Za-z0-9\-]+)/?', '\IdnoPlugins\Photo\Pages\Delete');
+            \Idno\Core\Idno::site()->routes()->addRoute('/photo/edit/:id/?', '\IdnoPlugins\Photo\Pages\Edit');
+            \Idno\Core\Idno::site()->routes()->addRoute('/photo/delete/:id/?', '\IdnoPlugins\Photo\Pages\Delete');
         }
 
         function registerEventHooks()

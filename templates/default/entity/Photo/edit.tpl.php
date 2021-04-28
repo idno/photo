@@ -43,7 +43,7 @@
 
                     <div class="content-form">
                         <label for="title">
-                            <?php echo \Idno\Core\Idno::site()->language()->_('Title'); ?></label>
+                            Title</label>
                         <?php echo $this->__([
                             'name' => 'title',
                             'id' => 'title',
