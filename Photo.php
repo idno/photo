@@ -45,7 +45,7 @@ namespace IdnoPlugins\Photo {
             $urls = [];
             if (!empty($this->thumbs_large)) {
                 foreach ($this->thumbs_large as $filename => $data) {
-                    $urls[] = preg_replace('/^(https?:\/\/\/)/', \Idno\Core\Idno::site()->config()->url, $data['url']);
+                    $urls[] = preg_replace('/^(https?:\/\/\/)/', \Idno\Core\Idno::site()->config()->getDisplayURL(), $data['url']);
                 }
             }
             if (!empty($urls)) {
@@ -139,6 +139,11 @@ namespace IdnoPlugins\Photo {
                 if (!empty($_file['tmp_name'])) {
 
                     if (\Idno\Entities\File::isImage($_file['tmp_name']) || \Idno\Entities\File::isSVG($_file['tmp_name'], $_file['name'])) {
+
+                        if (!\Idno\Entities\File::isFileFreeFromScriptTags($_file['tmp_name'])) {
+                            \Idno\Core\Idno::site()->session()->addErrorMessage(\Idno\Core\Idno::site()->language()->_('Image seems to contain malicious code and cannot be uploaded.'));
+                            return false;
+                        }
 
                         // Extract exif data so we can rotate
                         if (is_callable('exif_read_data') && $_file['type'] == 'image/jpeg') {
