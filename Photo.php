@@ -71,7 +71,7 @@ namespace IdnoPlugins\Photo {
         /**
          * Extend json serialisable to include some extra data
          */
-        public function jsonSerialize()
+        public function jsonSerialize():mixed
         {
             $object = parent::jsonSerialize();
 
